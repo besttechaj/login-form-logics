@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/Form1.css';
-const Form2 = () => {
+const Form3 = () => {
   //initializing the state with just one state
   const [newEntry, setNewEntry] = useState({
     title: '',
@@ -11,69 +11,18 @@ const Form2 = () => {
     password: '',
   });
 
+  //handling on-change event handler
   const inputData = (e) => {
     //accessing the value which will be used to update our state
     const fetchedInputName = e.target.name;
     const fetchedInputValue = e.target.value;
 
-    //updating the state
+    console.log(fetchedInputName);
+    console.log(fetchedInputValue);
+
+    // updating the state
     setNewEntry((prevData) => {
-      console.log(prevData);
-      if (fetchedInputName === 'title') {
-        return {
-          title: fetchedInputValue,
-          description: prevData.description,
-          tag: prevData.tag,
-          mobile: prevData.mobile,
-          email: prevData.email,
-          password: prevData.password,
-        };
-      } else if (fetchedInputName === 'description') {
-        return {
-          title: prevData.title,
-          description: fetchedInputValue,
-          tag: prevData.tag,
-          mobile: prevData.mobile,
-          email: prevData.email,
-          password: prevData.password,
-        };
-      } else if (fetchedInputName === 'tag') {
-        return {
-          title: prevData.title,
-          description: prevData.description,
-          tag: fetchedInputValue,
-          mobile: prevData.mobile,
-          email: prevData.email,
-          password: prevData.password,
-        };
-      } else if (fetchedInputName === 'mobile') {
-        return {
-          title: prevData.title,
-          description: prevData.description,
-          tag: prevData.tag,
-          mobile: fetchedInputValue,
-          email: prevData.email,
-          password: prevData.password,
-        };
-      } else if (fetchedInputName === 'email') {
-        return {
-          title: prevData.title,
-          description: prevData.description,
-          tag: prevData.tag,
-          mobile: prevData.mobile,
-          email: fetchedInputValue,
-          password: prevData.password,
-        };
-      } else {
-        return {
-          title: prevData.title,
-          description: prevData.description,
-          tag: prevData.tag,
-          mobile: prevData.mobile,
-          email: prevData.email,
-          password: fetchedInputValue,
-        };
-      }
+      return { ...prevData, [fetchedInputName]: fetchedInputValue };
     });
   };
   return (
@@ -162,8 +111,13 @@ const Form2 = () => {
           Submit
         </button>
       </form>
+      <h4>{newEntry.title}</h4>
+      <h4>{newEntry.description}</h4>
+      <h4>{newEntry.email}</h4>
+      <h4>{newEntry.mobile}</h4>
+      <h4>{newEntry.password}</h4>
     </>
   );
 };
 
-export default Form2;
+export default Form3;
